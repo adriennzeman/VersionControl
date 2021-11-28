@@ -19,6 +19,7 @@ namespace UserMaintenance
             InitializeComponent();
             lblFullName.Text = Resource1.FullName;
             btnAdd.Text = Resource1.Add;
+            btnFileWrite.Text = Resource1.WriteFile;
 
             listUsers.DataSource = users;
             listUsers.ValueMember = "ID";
