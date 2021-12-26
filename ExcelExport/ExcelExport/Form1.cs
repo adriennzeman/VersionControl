@@ -110,7 +110,8 @@ namespace ExcelExport
             firstColumn.Font.Bold = true;
             firstColumn.Interior.Color = Color.LightYellow;
             Excel.Range lastColumn = xlSheet.get_Range(GetCell(2, lastColID), GetCell(lastRowID, lastColID));
-            lastColumn.Interior.Color = Color.LightGreen; 
+            lastColumn.Interior.Color = Color.LightGreen;
+            lastColumn.NumberFormat = "#,###.00";
 
         }
 
