@@ -109,6 +109,8 @@ namespace ExcelExport
             Excel.Range firstColumn = xlSheet.get_Range(GetCell(2, 1), GetCell(lastRowID, 1));
             firstColumn.Font.Bold = true;
             firstColumn.Interior.Color = Color.LightYellow;
+            Excel.Range lastColumn = xlSheet.get_Range(GetCell(2, lastColID), GetCell(lastRowID, lastColID));
+            lastColumn.Interior.Color = Color.LightGreen; 
 
         }
 
