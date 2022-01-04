@@ -30,6 +30,7 @@
         {
             this.cbxEv = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnExcel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // cbxEv
@@ -49,11 +50,22 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Ev";
             // 
+            // btnExcel
+            // 
+            this.btnExcel.Location = new System.Drawing.Point(234, 106);
+            this.btnExcel.Name = "btnExcel";
+            this.btnExcel.Size = new System.Drawing.Size(102, 23);
+            this.btnExcel.TabIndex = 2;
+            this.btnExcel.Text = "Excelbe ment";
+            this.btnExcel.UseVisualStyleBackColor = true;
+            this.btnExcel.Click += new System.EventHandler(this.btnExcel_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnExcel);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cbxEv);
             this.Name = "Form1";
@@ -68,6 +80,7 @@
 
         private System.Windows.Forms.ComboBox cbxEv;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnExcel;
     }
 }
 

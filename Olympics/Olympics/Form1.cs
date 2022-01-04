@@ -9,13 +9,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Reflection;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace Olympics
 {
     public partial class Form1 : Form
     {
         List<OlympicResult> results = new List<OlympicResult>();
-        
+        Excel.Application xlApp;
+        Excel.Workbook xlWB;
+        Excel.Worksheet xlSheet;
+
         public Form1()
         {
             InitializeComponent();
@@ -79,6 +84,61 @@ namespace Olympics
             return counter + 1;
         }
 
+        private void btnExcel_Click(object sender, EventArgs e)
+        {
 
+            try
+            {
+                xlApp = new Excel.Application();
+                xlWB = xlApp.Workbooks.Add();
+                xlSheet = xlWB.ActiveSheet;
+
+                ExcelFeltolt();
+
+                xlApp.Visible = true;
+                xlApp.UserControl = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+
+                xlWB.Close(false, Type.Missing, Type.Missing);
+                xlApp.Quit();
+                xlWB = null;
+                xlApp = null;
+
+            }
+
+        }
+
+        private void ExcelFeltolt()
+        {
+            var headers = new string[]
+            {
+                "Helyezes",
+                "Orszag",
+                "Arany",
+                "Ezust",
+                "Bronz"
+            };
+            for (int i = 0; i < headers.Length; i++)
+            {
+                xlSheet.Cells[1, i + 1] = headers[i];
+
+            }
+
+            var filteredResult = from x in results where x.Year == (int)cbxEv.SelectedItem orderby x.Position select x;
+            int aktsor = 2;
+            foreach (var item in filteredResult)
+            {
+                xlSheet.Cells[aktsor, 1] = item.Position;
+                xlSheet.Cells[aktsor, 2] = item.Country;
+                for (int i = 0; i <= 2; i++)
+                {
+                    xlSheet.Cells[aktsor, 3+i] = item.Medals[i];
+                }
+                aktsor++;
+            }
+        }
     }
 }
