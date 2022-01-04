@@ -15,13 +15,13 @@ namespace VAR_2021
     {
 
         PortfolioEntities context = new PortfolioEntities();
-        List<Tick> ticks;
+        List<Tick> Ticks;
         List<PortfolioItem> Portfolio = new List<PortfolioItem>();
         public Form1()
         {
             InitializeComponent();
-            ticks = context.Ticks.ToList();
-            dataGridView1.DataSource = ticks;
+            Ticks = context.Ticks.ToList();
+            dataGridView1.DataSource = Ticks;
 
             CreatePortfolio();
         }
@@ -35,6 +35,22 @@ namespace VAR_2021
             dataGridView2.DataSource = Portfolio;
 
         }
+
+        private decimal GetPortfolioValue(DateTime date)
+        {
+            decimal value = 0;
+            foreach (var item in Portfolio)
+            {
+                var last = (from x in Ticks
+                            where item.Index == x.Index.Trim()
+                            && date <= x.TradingDay
+                            select x)
+                            .First();
+                value += (decimal)last.Price * item.Volume;
+            }
+            return value;
+        }
+
 
         private void Form1_Load(object sender, EventArgs e)
         {
