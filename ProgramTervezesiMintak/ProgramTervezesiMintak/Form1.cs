@@ -15,8 +15,8 @@ namespace ProgramTervezesiMintak
     public partial class Form1 : Form
     {
         private List<Toy> _toys = new List<Toy>();
-        private ToyFactory _toyFactory;
-        public ToyFactory Factory
+        private IToyFactory _toyFactory;
+        public IToyFactory Factory
         {
             get { return _toyFactory; } 
             set { _toyFactory = value; } 
@@ -24,7 +24,7 @@ namespace ProgramTervezesiMintak
         public Form1()
         {
             InitializeComponent();
-            Factory = new ToyFactory();
+            Factory = new CarFactory();
         }
 
         private void Form1_Load(object sender, EventArgs e)
