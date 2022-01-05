@@ -44,7 +44,7 @@ namespace ProgramTervezesiMintak
             var maxPosition = 0;
             foreach (var b in _balls)
             {
-                b.MoveBall();
+                b.MoveToy();
                 if (b.Left > maxPosition)
                     maxPosition = b.Left;
             }
