@@ -16,11 +16,25 @@ namespace ProgramTervezesiMintak
     {
         private List<Toy> _toys = new List<Toy>();
         private IToyFactory _toyFactory;
+        private Toy _nextToy;
         public IToyFactory Factory
         {
             get { return _toyFactory; } 
-            set { _toyFactory = value; } 
+            set { _toyFactory = value;
+                DisplayNext();
+            } 
         }
+
+        private void DisplayNext()
+        {
+            if (_nextToy != null)
+                Controls.Remove(_nextToy);
+            _nextToy = Factory.CreateNew();
+            _nextToy.Top = lblNext.Top + lblNext.Height + 20;
+            _nextToy.Left = lblNext.Left;
+            Controls.Add(_nextToy);
+        }
+
         public Form1()
         {
             InitializeComponent();
@@ -56,6 +70,26 @@ namespace ProgramTervezesiMintak
                 mainPanel.Controls.Remove(oldestToy);
                 _toys.Remove(oldestToy);
             }
+        }
+
+        private void btnSelectCar_Click(object sender, EventArgs e)
+        {
+            Factory = new CarFactory();
+        }
+
+        private void btnSelectBall_Click(object sender, EventArgs e)
+        {
+            Factory = new BallFactory() { BallColor = btnBallColor.BackColor };
+        }
+
+        private void btnBallColor_Click(object sender, EventArgs e)
+        {
+            Button kattintott = (Button)sender;
+            ColorDialog cd = new ColorDialog();
+            cd.Color = kattintott.BackColor;
+            if (cd.ShowDialog() != DialogResult.OK) return;
+            kattintott.BackColor = cd.Color;
+
         }
     }
 }

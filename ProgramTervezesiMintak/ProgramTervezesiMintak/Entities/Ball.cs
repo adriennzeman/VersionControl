@@ -11,10 +11,15 @@ namespace ProgramTervezesiMintak.Entities
 {
     public class Ball: Toy
     {
+        public SolidBrush BallBrush { get; private set; }
 
+        public Ball(Color kivantszin)
+        {
+            BallBrush = new SolidBrush(kivantszin);
+        }
         protected override void DrawImage(Graphics g)
         {
-            g.FillEllipse(new SolidBrush(Color.Blue),0,0, Width, Height);
+            g.FillEllipse(BallBrush, 0, 0, Width, Height);
         }
 
 
