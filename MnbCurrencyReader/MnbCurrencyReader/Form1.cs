@@ -21,7 +21,7 @@ namespace MnbCurrencyReader
         public Form1()
         {
             InitializeComponent();
-            ValutaLekerdezes();
+            ValutaLekerdezes(); 
             dgwRates.DataSource = Rates;
             cbCurrency.DataSource = Currencies;
             RefreshData();
