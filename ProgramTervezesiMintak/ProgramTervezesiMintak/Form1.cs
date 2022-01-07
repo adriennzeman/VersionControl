@@ -91,5 +91,14 @@ namespace ProgramTervezesiMintak
             kattintott.BackColor = cd.Color;
 
         }
+
+        private void btnSelectPresent_Click(object sender, EventArgs e)
+        {
+            Factory = new PresentFactory()
+            {
+                BoxColor = btnBoxColor.BackColor,
+                RibbonColor = btnRibbonColor.BackColor
+            };
+        }
     }
 }

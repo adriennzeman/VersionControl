@@ -36,6 +36,9 @@
             this.btnSelectBall = new System.Windows.Forms.Button();
             this.lblNext = new System.Windows.Forms.Label();
             this.btnBallColor = new System.Windows.Forms.Button();
+            this.btnSelectPresent = new System.Windows.Forms.Button();
+            this.btnBoxColor = new System.Windows.Forms.Button();
+            this.btnRibbonColor = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // mainPanel
@@ -69,7 +72,7 @@
             // 
             // btnSelectBall
             // 
-            this.btnSelectBall.Location = new System.Drawing.Point(275, 51);
+            this.btnSelectBall.Location = new System.Drawing.Point(212, 48);
             this.btnSelectBall.Name = "btnSelectBall";
             this.btnSelectBall.Size = new System.Drawing.Size(75, 23);
             this.btnSelectBall.TabIndex = 2;
@@ -89,18 +92,51 @@
             // btnBallColor
             // 
             this.btnBallColor.BackColor = System.Drawing.Color.Red;
-            this.btnBallColor.Location = new System.Drawing.Point(275, 96);
+            this.btnBallColor.Location = new System.Drawing.Point(212, 93);
             this.btnBallColor.Name = "btnBallColor";
             this.btnBallColor.Size = new System.Drawing.Size(75, 23);
             this.btnBallColor.TabIndex = 4;
             this.btnBallColor.UseVisualStyleBackColor = false;
             this.btnBallColor.Click += new System.EventHandler(this.btnBallColor_Click);
             // 
+            // btnSelectPresent
+            // 
+            this.btnSelectPresent.Location = new System.Drawing.Point(384, 51);
+            this.btnSelectPresent.Name = "btnSelectPresent";
+            this.btnSelectPresent.Size = new System.Drawing.Size(82, 23);
+            this.btnSelectPresent.TabIndex = 5;
+            this.btnSelectPresent.Text = "PRESENT";
+            this.btnSelectPresent.UseVisualStyleBackColor = true;
+            this.btnSelectPresent.Click += new System.EventHandler(this.btnSelectPresent_Click);
+            // 
+            // btnBoxColor
+            // 
+            this.btnBoxColor.BackColor = System.Drawing.Color.Cyan;
+            this.btnBoxColor.Location = new System.Drawing.Point(384, 93);
+            this.btnBoxColor.Name = "btnBoxColor";
+            this.btnBoxColor.Size = new System.Drawing.Size(75, 23);
+            this.btnBoxColor.TabIndex = 6;
+            this.btnBoxColor.UseVisualStyleBackColor = false;
+            this.btnBoxColor.Click += new System.EventHandler(this.btnBallColor_Click);
+            // 
+            // btnRibbonColor
+            // 
+            this.btnRibbonColor.BackColor = System.Drawing.Color.DarkOrange;
+            this.btnRibbonColor.Location = new System.Drawing.Point(384, 132);
+            this.btnRibbonColor.Name = "btnRibbonColor";
+            this.btnRibbonColor.Size = new System.Drawing.Size(75, 23);
+            this.btnRibbonColor.TabIndex = 7;
+            this.btnRibbonColor.UseVisualStyleBackColor = false;
+            this.btnRibbonColor.Click += new System.EventHandler(this.btnBallColor_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnRibbonColor);
+            this.Controls.Add(this.btnBoxColor);
+            this.Controls.Add(this.btnSelectPresent);
             this.Controls.Add(this.btnBallColor);
             this.Controls.Add(this.lblNext);
             this.Controls.Add(this.btnSelectBall);
@@ -123,6 +159,9 @@
         private System.Windows.Forms.Button btnSelectBall;
         private System.Windows.Forms.Label lblNext;
         private System.Windows.Forms.Button btnBallColor;
+        private System.Windows.Forms.Button btnSelectPresent;
+        private System.Windows.Forms.Button btnBoxColor;
+        private System.Windows.Forms.Button btnRibbonColor;
     }
 }
 
