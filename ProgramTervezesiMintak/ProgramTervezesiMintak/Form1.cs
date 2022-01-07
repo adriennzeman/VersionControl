@@ -51,6 +51,7 @@ namespace ProgramTervezesiMintak
             Toy b = Factory.CreateNew();
             _toys.Add(b);
             b.Left = -b.Width;
+            b.Top += b.Height;
             mainPanel.Controls.Add(b);
         }
 
