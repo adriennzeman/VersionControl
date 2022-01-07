@@ -15,5 +15,10 @@ namespace ProgramTervezesiMintak.Entities
             Image imageFile = Image.FromFile("Images/car.png");
             g.DrawImage(imageFile, new Rectangle(0, 0, Width, Height));
         }
+
+        protected override string GetTypeName()
+        {
+            return "auto";
+        }
     }
 }

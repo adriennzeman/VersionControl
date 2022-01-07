@@ -37,6 +37,9 @@ namespace ProgramTervezesiMintak.Entities
             Top += Convert.ToInt32(Math.Sin(1.0 * Left / 10.0));
         }
 
-
+        protected override string GetTypeName()
+        {
+            return "labda";
+        }
     }
 }

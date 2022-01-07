@@ -27,5 +27,10 @@ namespace ProgramTervezesiMintak.Entities
             g.FillRectangle(RibbonBrush, new Rectangle(Width * 2 / 3, 0, Width, Height / 3));
             g.FillRectangle(RibbonBrush, new Rectangle(0, Width * 2 / 3, Width / 3, Height));
         }
+
+        protected override string GetTypeName()
+        {
+            return "ajandek";
+        }
     }
 }

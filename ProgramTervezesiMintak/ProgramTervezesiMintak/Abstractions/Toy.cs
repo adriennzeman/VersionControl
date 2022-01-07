@@ -15,7 +15,13 @@ namespace ProgramTervezesiMintak.Abstractions
             AutoSize = false;
             Width = Height = 50;
             Paint += Toy_Paint;
+            Click += Toy_Click;
 
+        }
+
+        private void Toy_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(GetTypeName());
         }
 
         private void Toy_Paint(object sender, PaintEventArgs e)
@@ -24,6 +30,8 @@ namespace ProgramTervezesiMintak.Abstractions
         }
 
         protected abstract void DrawImage(Graphics g);
+
+        protected abstract string GetTypeName();
 
         public virtual void MoveToy()
         {

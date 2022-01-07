@@ -103,7 +103,7 @@
             // 
             this.btnSelectPresent.Location = new System.Drawing.Point(384, 51);
             this.btnSelectPresent.Name = "btnSelectPresent";
-            this.btnSelectPresent.Size = new System.Drawing.Size(82, 23);
+            this.btnSelectPresent.Size = new System.Drawing.Size(85, 23);
             this.btnSelectPresent.TabIndex = 5;
             this.btnSelectPresent.Text = "PRESENT";
             this.btnSelectPresent.UseVisualStyleBackColor = true;
