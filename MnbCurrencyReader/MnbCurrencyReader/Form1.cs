@@ -17,11 +17,29 @@ namespace MnbCurrencyReader
     public partial class Form1 : Form
     {
         BindingList<RateData> Rates = new BindingList<RateData>();
+        BindingList<string> Currencies = new BindingList<string>();
         public Form1()
         {
             InitializeComponent();
+            ValutaLekerdezes();
             dgwRates.DataSource = Rates;
+            cbCurrency.DataSource = Currencies;
             RefreshData();
+        }
+
+        private void ValutaLekerdezes()
+        {
+            var mnbService = new MNBArfolyamServiceSoapClient();
+            var request = new GetCurrenciesRequestBody();
+            var response = mnbService.GetCurrencies(request);
+            var result = response.GetCurrenciesResult;
+            Console.WriteLine(result);
+            XmlDocument xml = new XmlDocument();
+            xml.LoadXml(result);
+            foreach(XmlElement element in xml.DocumentElement.ChildNodes[0])
+            {
+                Currencies.Add(element.InnerText);
+            }
         }
 
         private void RefreshData()
@@ -60,6 +78,7 @@ namespace MnbCurrencyReader
                 Rates.Add(rate);
                 rate.Date = DateTime.Parse(element.GetAttribute("date"));
                 var childElement = (XmlElement)element.ChildNodes[0];
+                if (childElement == null) continue;
                 rate.Currency = childElement.GetAttribute("curr");
                 var unit = decimal.Parse(childElement.GetAttribute("unit"));
                 var value = decimal.Parse(childElement.InnerText.Replace(',','.')); //Tizedes vesszot pontra cserelem
