@@ -17,17 +17,24 @@ namespace Mikroszimulacio
         List<Person> Population;
         List<BirthProbabilities> BirthProbabilities;
         List<DeathProbabilities> DeathProbabilities;
+        List<int> CntMale;
+        List<int> CntFemale;
         Random rng = new Random(1234);
 
         public Form1()
         {
             InitializeComponent();
-//            Population = GetPopulation("C:/Temp/nép-teszt.csv");
-            Population = GetPopulation("C:/Temp/nép.csv");
-            BirthProbabilities =  GetBirthProbabilities("C:/Temp/születés.csv");
-            DeathProbabilities = GetDeathProbabilities("C:/Temp/halál.csv");
+        }
 
-            for (int year = 2005; year <= 2024; year++)
+        private void Simulation(int zaroev, string filename)
+        {
+            Population = GetPopulation(filename);
+            BirthProbabilities = GetBirthProbabilities("C:/Temp/születés.csv");
+            DeathProbabilities = GetDeathProbabilities("C:/Temp/halál.csv");
+            CntMale = new List<int>();
+            CntFemale = new List<int>();
+
+            for (int year = 2005; year <= zaroev; year++)
             {
                 for (int i = 0; i < Population.Count; i++)
                 {
@@ -37,6 +44,8 @@ namespace Mikroszimulacio
                 int ferfiakSzama = (from x in Population where x.Gender == Gender.Male select x).Count();
                 int nokSzama = (from x in Population where x.Gender == Gender.Female select x).Count();
                 Console.WriteLine(string.Format("Ev: {0}, Ferfiak: {1}, Nok: {2}", year, ferfiakSzama, nokSzama));
+                CntMale.Add(ferfiakSzama);
+                CntFemale.Add(nokSzama);
             }
         }
 
@@ -52,7 +61,8 @@ namespace Mikroszimulacio
             if (person.IsAlive && person.Gender == Gender.Female)
             {
                 double pBirth = (from x in BirthProbabilities
-                                 where x.Age == age
+                                 where x.Age == age 
+                                 && x.NbrOfChildren == person.NbrOfChildren
                                  select x.P).FirstOrDefault();
                 if (rng.NextDouble() <= pBirth)
                 {
@@ -123,9 +133,34 @@ namespace Mikroszimulacio
             }
             return deathProbabilities;
         }
-        private void Form1_Load(object sender, EventArgs e)
-        {
 
+        private void btnStart_Click(object sender, EventArgs e)
+        {
+            rtbResults.Text = "";
+            Simulation((int)numericUpDown1.Value, tbFilename.Text);
+            DisplayResults((int)numericUpDown1.Value);
+
+        }
+
+        private void DisplayResults(int zaroev)
+        {
+            int counter = 0;
+            for (int i = 2005; i<= zaroev; i++) 
+            {
+                rtbResults.Text += String.Format("Szimulacios ev: {0}\n", i);
+                rtbResults.Text += String.Format("\tferfiak: {0}\n\tnok: {1}\n\n", CntMale[counter], CntFemale[counter]);
+                counter++; 
+            }
+
+        }
+
+        private void btnBrowse_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            if(ofd.ShowDialog() == DialogResult.OK)
+            {
+                tbFilename.Text = ofd.FileName;
+            }
         }
     }
 }
